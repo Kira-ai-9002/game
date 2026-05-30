@@ -1,1 +1,3 @@
 # game
+
+How it works
