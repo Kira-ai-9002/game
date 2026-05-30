@@ -1,4 +1,4 @@
-inventar = {
+INVENTAR = {
     "zelezna_tyc": False,
     "baterka1": False,
     "baterka2": False,
@@ -8,43 +8,33 @@ inventar = {
     "prkno": False,
     "zidle": False,
     "klic": False,
-    "zarovka": False,
-    "lepici_paska": False,
     "mop": False,
     "sroubovak": False,
     "drat": False,
     "nuz": False,
 }
 
-pokoj = "koupelna"
-pokoj_otevren = False
-preklizka = False
-zabil = False
-vychod = False
+POKOJ = "koupelna"
+POKOJ_OTEVREN = False
+PREKLIZKA = False
+ZABIL = False
 
 
 def ukaz_inventar():
     print("inventar:")
-    if not any(inventar.values()):
+    if not any(INVENTAR.values()):
         print("nic neni")
     else:
-        for key in inventar:
-            if inventar[key]:
+        for key in INVENTAR:
+            if INVENTAR[key]:
                 print(" - " + key)
 
 
 # ============================================================
-running = True
+RUNNING = True
 
-while running:
-    if pokoj == "koupelna":
-        vec1 = "zelezna_tyc"
-        vec2 = "baterka1"
-        vec3 = "nabita svitilna"
-        vec4 = "nuz"
-        vec5 = "baterka2"
-        vec6 = "svitilna"
-
+while RUNNING:
+    if POKOJ == "koupelna":
         print("jsi v koupelne")
         print("\nco delat?")
         print("1. otevrit dvere")
@@ -57,38 +47,38 @@ while running:
         x = input(">>> ")
 
         if x == "1":
-            if inventar["zelezna_tyc"]:
-                pokoj_otevren = True
-                pokoj = "koridor1"
+            if INVENTAR["zelezna_tyc"]:
+                POKOJ_OTEVREN = True
+                POKOJ = "koridor1"
             else:
                 print("nemuzes otevrit dvere potrebujes nejakou tyc")
         elif x == "2":
             while True:
-                if not inventar[vec1] or (vec2 in inventar and not inventar[vec2]):
-                    print(" \npod umzvadlem se nachazi:")
-                    if not inventar[vec1]:
-                        print(f"1. vzit {vec1}")
-                    if not inventar[vec2]:
-                        print(f"2. vzit {vec2}")
+                if not INVENTAR["zelezna_tyc"] or ("baterka1" in INVENTAR and not INVENTAR["baterka1"]):
+                    print(" \npod umyvadlem se nachazi:")
+                    if not INVENTAR["zelezna_tyc"]:
+                        print(f"1. vzit zelezna_tyc")
+                    if "baterka1" in INVENTAR and not INVENTAR["baterka1"]:
+                        print(f"2. vzit baterka1")
                 else:
                     print("\ntady nic neni")
                 print("3. zpatky")
                 y = input(">>> ")
                 if y == "1":
-                    if not inventar[vec1]:
-                        inventar[vec1] = True
-                        print(f"\nmas {vec1}")
+                    if not INVENTAR["zelezna_tyc"]:
+                        INVENTAR["zelezna_tyc"] = True
+                        print(f"\nmas zelezna_tyc")
                     else:
                         print("\ntato vec tady neni")
                 elif y == "2":
-                    if vec2 in inventar and not inventar[vec2]:
-                        inventar[vec2] = True
-                        print(f"\nmas {vec2}")
-                    if inventar[vec2] and inventar[vec6] and inventar[vec5]:
-                        inventar[vec3] = True
-                        del inventar[vec2] 
-                        del inventar[vec6] 
-                        del inventar[vec5] 
+                    if "baterka1" in INVENTAR and not INVENTAR["baterka1"]:
+                        INVENTAR["baterka1"] = True
+                        print(f"\nmas baterka1")
+                    if "baterka1" in INVENTAR and INVENTAR["baterka1"]  and INVENTAR["baterka2"] and INVENTAR["svitilna"]:
+                        INVENTAR["nabita svitilna"] = True
+                        del INVENTAR["baterka1"] 
+                        del INVENTAR["baterka2"]
+                        del INVENTAR["svitilna"]
                         print("\nmas nabitou svitilnu")
                 elif y == "3":
                     break
@@ -96,10 +86,10 @@ while running:
                     print("\ntato vec tady neni")
         elif x == "3":
              while True:
-                if not inventar[vec3]:
+                if not INVENTAR["nabita svitilna"]:
                     print("tady je moc temno potrebujes rozsvitit")
                 else:
-                    if not inventar[vec4]:
+                    if not INVENTAR["nuz"]:
                         print(" \npod vanou je nuz")
                         print("1. vzit nuz")
                     else:
@@ -107,8 +97,8 @@ while running:
                 print("2. zpatky")
                 y = input(">>> ")
                 if y == "1":
-                    if not inventar[vec4]:
-                        inventar[vec4] = True
+                    if not INVENTAR["nuz"]:
+                        INVENTAR["nuz"] = True
                         print("\nmas nuz")
                     else:
                         print("\ntato vec tady neni")
@@ -121,8 +111,8 @@ while running:
             print("konec")
             break
         elif x == "5":
-            if not inventar["mop"]:
-                inventar["mop"] = True
+            if not INVENTAR["mop"]:
+                INVENTAR["mop"] = True
                 print("\nmas mop")
             else:
                 print("\nuz jsi ji vzal")
@@ -134,9 +124,7 @@ while running:
         else:
             print("nemuzes to udelat")
 
-    elif pokoj == "koridor1":
-        vec1 = "nuz"
-
+    elif POKOJ == "koridor1":
         print("jsi v koridore")
         print("\nco delat?")
         print("1. jit ke schodam")
@@ -148,14 +136,14 @@ while running:
         x = input(">>> ")
         
         if x == "1":
-            pokoj = "koridor2"
+            POKOJ = "koridor2"
         elif x == "2":
             while True:
-                if not zabil:
-                    if not inventar[vec1]:
+                if not ZABIL:
+                    if not INVENTAR["nuz"]:
                         print("tam byl protivnik on te zabil")
                         print("konec")
-                        running = False
+                        RUNNING = False
                         break
                     else:
                         print("\nmas zbran. on te nevidi. muzes ho zabit")
@@ -166,8 +154,8 @@ while running:
                 print("2. zpatky")
                 y = input(">>> ")
                 if y == "1":
-                    if not zabil:
-                        zabil = True
+                    if not ZABIL:
+                        ZABIL = True
                         print("\nzabil jsi protivnika")
                     else:
                         print("\nnemuzes to udelat")
@@ -176,9 +164,9 @@ while running:
                 else:
                     print("\nnemuzes to udelat")
         elif x == "3":
-            pokoj = "levy pokoj"
+            POKOJ = "levy pokoj"
         elif x == "4":
-            pokoj = "koupelna"
+            POKOJ = "koupelna"
         elif x == "5":
             ukaz_inventar()
         elif x == "6":
@@ -187,9 +175,7 @@ while running:
         else:
             print("nemuzes to udelat")
 
-    elif pokoj == "levy pokoj":
-        vec1 = "pila"
-
+    elif POKOJ == "levy pokoj":
         print(" jsi v levym pokoje")
         print("\nco delat?")
         print("1. odejit z pokoje")
@@ -197,11 +183,12 @@ while running:
         print("3. inventar")
         print("\n4. ukoncit hru")
         x = input(">>> ")
+
         if x == "1":
-            pokoj = "koridor1"
+            POKOJ = "koridor1"
         elif x == "2":
             while True:
-                if not inventar[vec1]:
+                if not INVENTAR["pila"]:
                     print(" \nna podlaze se nachazi pila")
                     print("1. vzit pilu")
                 else:
@@ -209,8 +196,8 @@ while running:
                 print("2. zpatky")
                 y = input(">>> ")
                 if y == "1":
-                    if not inventar[vec1]:
-                        inventar[vec1] = True
+                    if not INVENTAR["pila"]:
+                        INVENTAR["pila"] = True
                         print("\nmas pilu")
                     else:
                         print("\ntato vec tady neni")
@@ -226,14 +213,7 @@ while running:
         else:
             print("nemuzes to udelat")
 
-    elif pokoj == "koridor2":
-        vec1 = "svitilna"
-        vec2 = "baterka1"
-        vec3 = "baterka2"
-        vec4 = "mop"
-        vec5 = "sroubovak"
-        vec6 = "nabita svitilna"
-
+    elif POKOJ == "koridor2":
         print(" jsi v koridore")
         print("\nco delat?")
         print("1. jit ke koupelne")
@@ -245,31 +225,32 @@ while running:
         print("7. inventar")
         print("\n8. ukoncit hru")
         x = input(">>> ")
+
         if x == "1":
-            pokoj = "koridor1"
+            POKOJ = "koridor1"
         elif x == "2":
-            pokoj = "schody"
+            POKOJ = "schody"
         elif x == "3":
-            pokoj = "dreveny pokoj"
+            POKOJ = "dreveny pokoj"
         elif x == "4":
-            pokoj = "cerveny pokoj"
+            POKOJ = "cerveny pokoj"
         elif x == "5":
             while True:
                 print("\nstojis pred pokojem")
-                if not inventar[vec4]:
+                if not INVENTAR["mop"]:
                     print("tam je tma. nic nevidis")
                     print("\n1. vstoupit do mistnosti")
                     print("2. jit zpatky")
                 else:
                     print("on je rozsviceny")
-                    pokoj = "temny pokoj"
+                    POKOJ = "temny pokoj"
                     break
                 y = input(">>> ")
                 if y == "1":
                     print("tam byla propast")
                     print("jsi do ni spadl a zlomil krk")
                     print("konec")
-                    running = False
+                    RUNNING = False
                     break
                 elif y == "2":
                     break
@@ -277,18 +258,20 @@ while running:
                     print("\nnemuzes to udelat")
         elif x == "6":
             while True:
-                if not preklizka:
+                if not PREKLIZKA:
                     print("potrebujes odstranit preklizku")
-                    if inventar[vec5]:
-                        preklizka = True
+                    if INVENTAR["sroubovak"]:
+                        PREKLIZKA = True
                         print("jsi odstranil preklizku")
-                    if not inventar[vec1]:
-                        print(" \npod topenim se nachazi svitilna")
-                        print("1. vzit svitilnu")
+                        if not INVENTAR["svitilna"]:
+                            print(" \npod topenim se nachazi svitilna")
+                            print("1. vzit svitilnu")
+                        else:
+                            print("\nnic tady neni")
                     else:
-                        print("\nnic tady neni")
+                        print("\nnemuzes ji sundat. potrebujes sroubovak")
                 else:
-                    if vec1 in inventar and not inventar[vec1]:
+                    if "svitilna" in INVENTAR and not INVENTAR["svitilna"]:
                         print(" \npod topenim se nachazi svitilna")
                         print("1. vzit svitilnu")
                     else:
@@ -296,16 +279,18 @@ while running:
                 print("2. zpatky")
                 y = input(">>> ")
                 if y == "1":
-                    if vec1 in inventar and not inventar[vec1]:
-                        inventar[vec1] = True
+                    if PREKLIZKA and "svitilna" in INVENTAR and not INVENTAR["svitilna"]:
+                        INVENTAR["svitilna"] = True
                         print("\nmas svitilnu")
                     else:
                         print("\ntato vec tady neni")
-                    if inventar[vec1] and inventar[vec2] and inventar[vec3]:
-                        inventar[vec6] = True
-                        del inventar[vec1]
-                        del inventar[vec2]
-                        del inventar[vec3]
+                    if "svitilna" in INVENTAR and INVENTAR["svitilna"] and \
+                        "baterka1" in INVENTAR and INVENTAR["baterka1"] and \
+                        "baterka2" in INVENTAR and INVENTAR["baterka2"]:
+                        INVENTAR["nabita svitilna"] = True
+                        del INVENTAR["svitilna"]
+                        del INVENTAR["baterka1"]
+                        del INVENTAR["baterka2"]
                         print("\nmas nabitou svitilnu")
                 elif y == "2":
                     break
@@ -319,10 +304,7 @@ while running:
         else:
             print("nemuzes to udelat")
 
-    elif pokoj == "cerveny pokoj":
-        vec1 = "zidle"
-        vec2 = "klic"
-
+    elif POKOJ == "cerveny pokoj":
         print("jsi v cervenem pokoje")
         print("\nco delat?")
         print("1. odejit z pokoje")
@@ -331,14 +313,15 @@ while running:
         print("4. inventar")
         print("\n5. ukoncit hru")
         x = input(">>> ")
+
         if x == "1":
-            pokoj = "koridor2"
+            POKOJ = "koridor2"
         elif x == "2":
             while True:
-                if not inventar[vec1]:
+                if not INVENTAR["zidle"]:
                     print("nemuzes dosahnout")
                 else:
-                    if not inventar[vec2]:
+                    if not INVENTAR["klic"]:
                         print(" \nna komode se nachazi klic")
                         print("1. vzit klic")
                     else:
@@ -346,18 +329,21 @@ while running:
                 print("2. zpatky")
                 y = input(">>> ")
                 if y == "1":
-                    if not inventar[vec2]:
-                        inventar[vec2] = True
-                        print("\nmas klic")
+                    if not INVENTAR["zidle"]:
+                        print("nemuzes to udelat")
                     else:
-                        print("\ntato vec tady neni")
+                        if not INVENTAR["klic"]:
+                            INVENTAR["klic"] = True
+                            print("\nmas klic")
+                        else:
+                            print("\ntato vec tady neni")
                 elif y == "2":
                     break
                 else:
                     print("\ntato vec tady neni")
         elif x == "3":
-            if not inventar[vec1]:
-                inventar[vec1] = True
+            if not INVENTAR["zidle"]:
+                INVENTAR["zidle"] = True
                 print("\nmas zidle")
             else:
                 print("\ntato vec tady neni")
@@ -369,11 +355,7 @@ while running:
         else:
             print("nemuzes to udelat")
 
-    elif pokoj == "dreveny pokoj":
-        vec1 = "pila"
-        vec2 = "prkno"
-        vec3 = "drat"
-
+    elif POKOJ == "dreveny pokoj":
         print("jsi v drevenym pokoje")
         print("\nco delat?")
         print("1. odejit z pokoje")
@@ -383,11 +365,11 @@ while running:
         print("\n5. ukoncit hru")
         x = input(">>> ")
         if x == "1":
-            pokoj = "koridor2"
+            POKOJ = "koridor2"
         elif x == "2":
-            if inventar[vec1]:
-                if not inventar[vec2]:
-                    inventar[vec2] = True
+            if INVENTAR["pila"]:
+                if not INVENTAR["prkno"]:
+                    INVENTAR["prkno"] = True
                     print("\nmas prkno")
                 else:
                     print("\nuz mas prkno")
@@ -395,7 +377,7 @@ while running:
                 print("nemas na to sily potrebujes nejaky stroj")
         elif x == "3":
             while True:
-                if not inventar[vec3]:
+                if not INVENTAR["drat"]:
                     print(" \nv krabice je drat")
                     print("1. vzit drat")
                 else:
@@ -403,8 +385,8 @@ while running:
                 print("2. zpatky")
                 y = input(">>> ")
                 if y == "1":
-                    if not inventar[vec3]:
-                        inventar[vec3] = True
+                    if not INVENTAR["drat"]:
+                        INVENTAR["drat"] = True
                         print("\nmas drat")
                     else:
                         print("\ntato vec tady neni")
@@ -420,14 +402,7 @@ while running:
         else:
             print("nemuzes to udelat")
 
-    elif pokoj == "temny pokoj":
-        vec1 = "baterka2"
-        vec2 = "sroubovak"
-        vec3 = "drat"
-        vec4 = "baterka1"
-        vec5 = "svitilna"
-        vec6 = "nabita svitilna"
-
+    elif POKOJ == "temny pokoj":
         print("jsi v mistnisti uprostred je dira")
         print("\nco delat?")
         print("1. jit zpatky")
@@ -438,10 +413,10 @@ while running:
         x = input(">>> ")
         
         if x == "1":
-            pokoj = "koridor2"
+            POKOJ = "koridor2"
         elif x == "2":
             while True:
-                if vec1 in inventar and not inventar[vec1]:
+                if "baterka2" in INVENTAR and not INVENTAR["baterka2"]:
                     print(" \nve skrine je baterka")
                     print("1. vzit baterku")
                 else:
@@ -449,16 +424,18 @@ while running:
                 print("2. zpatky")
                 y = input(">>> ")
                 if y == "1":
-                    if vec1 in inventar and not inventar[vec1]:
-                        inventar[vec1] = True
+                    if "baterka2" in INVENTAR and not INVENTAR["baterka2"]:
+                        INVENTAR["baterka2"] = True
                         print("\nmas baterku")
                     else:
                         print("\ntato vec tady neni")
-                    if inventar[vec1] and inventar[vec4] and inventar[vec5]:
-                        inventar[vec6] = True
-                        del inventar[vec1]
-                        del inventar[vec4]
-                        del inventar[vec5]
+                    if "baterka1" in INVENTAR and INVENTAR["baterka1"] and \
+                        "baterka2" in INVENTAR and INVENTAR["baterka2"] and \
+                        "svitilna" in INVENTAR and INVENTAR["svitilna"]:
+                        INVENTAR["nabita svitilna"] = True
+                        del INVENTAR["baterka1"]
+                        del INVENTAR["baterka2"]
+                        del INVENTAR["svitilna"]
                         print("\nmas nabitou svitilnu")
                 elif y == "2":
                     break
@@ -466,7 +443,7 @@ while running:
                     print("\ntato vec tady neni")
         elif x == "3":
             while True:
-                if not inventar[vec2]:
+                if not INVENTAR["sroubovak"]:
                     print("\ndolu lezi sroubovak")
                     print("1. vzit sroubovak")
                 else:
@@ -474,10 +451,10 @@ while running:
                 print("2. zpatky")
                 y = input(">>> ")
                 if y == "1":
-                    if not inventar[vec3]:
+                    if not INVENTAR["drat"]:
                         print("\nnemuzes dosahnout potrebujes neco")
                     else:
-                        inventar[vec2] = True
+                        INVENTAR["sroubovak"] = True
                         print("\nmas sroubovak")
                 elif y == "2":
                     break
@@ -491,7 +468,7 @@ while running:
         else:
             print("nemuzes to udelat")
 
-    elif pokoj == "schody":
+    elif POKOJ == "schody":
         print("jsi u schodu")
         print("\nco delat?")
         print("1. jit zpatky")
@@ -499,12 +476,12 @@ while running:
         print("3. inventar")
         print("\n4. ukoncit hru")
         x = input(">>> ")
+
         if x == "1":
-            pokoj = "koridor2"
+            POKOJ = "koridor2"
         elif x == "2":
-            if inventar["prkno"]:
-                vychod = True
-                pokoj = "vychod"
+            if INVENTAR["prkno"]:
+                POKOJ = "vychod"
             else:
                 print("nemuzes projit na schodach chyby prkno")
         elif x == "3":
@@ -515,10 +492,7 @@ while running:
         else:
             print("nemuzes to udelat")
 
-    elif pokoj == "vychod":
-        vec1 = "nabita svitilna"
-        vec2 = "klic"
-
+    elif POKOJ == "vychod":
         print("jsi u vychodu")
         print("\nco delat?")
         print("1. jit zpatky")
@@ -526,23 +500,24 @@ while running:
         print("3. inventar")
         print("\n4. ukoncit hru")
         x = input(">>> ")
+
         if x == "1":
-            pokoj = "schody"
+            POKOJ = "schody"
         elif x == "2":
             while True:
-                if not inventar[vec2]:
+                if not INVENTAR["klic"]:
                     print("\nnemuzes otevrit dvere. potrebujes klic.")
-                elif not zabil and not inventar[vec1]:
+                elif not ZABIL and not INVENTAR["nabita svitilna"]:
                     print("\njsi utekl ale v lese je moc temno. jsi se zabloudil")
                     print("spatny konec")
-                    running = False
+                    RUNNING = False
                     break
-                elif inventar[vec1] and not zabil:
+                elif INVENTAR["nabita svitilna"] and not ZABIL:
                     print("\njsi utekl.")
                     print("svitilna ti osvicuje cestu, ale kvuli amputovane noze jsi moc pomaly.")
                     print("tebe nasel protivnik a odnesl te zpatky")
                     print("spatny konec")
-                    running = False
+                    RUNNING = False
                     break
                 else:
                     print("\njsi utekl.")
@@ -551,7 +526,7 @@ while running:
                     print("ve sklepe jsi nasel vodu a urcite mnozstvi jidla.")
                     print("zijes jen s nadeji ze te nekdo najde.")
                     print("dobry konec (mozna)")
-                    running = False
+                    RUNNING = False
                     break 
         elif x == "3":
             ukaz_inventar()
