@@ -1,10 +1,10 @@
 # Game-1
 
-Textová hra v Pythonu v českém jazyce.
+Textová RPG hra v Pythonu (únikovka) .
 
 ## Příběh
 
-Hráč byl unesen, probudil se ve vaně plné ledu a chybí mu jedna noha. Musí se dostat ven z budovy, aniž by narazil na únosce.
+Hráč byl unesen, únosce mu amputoval nohu. Musí se dostat ven ze sklepa, aniž by narazil na únosce.
 
 ## Struktura hry
 
@@ -21,15 +21,15 @@ Hráč byl unesen, probudil se ve vaně plné ledu a chybí mu jedna noha. Musí
 | `levy pokoj` | Levý pokoj (pila) |
 | `cerveny pokoj` | Červený pokoj (klíč) |
 | `dreveny pokoj` | Dřevěný pokoj (prkno, drát) |
-| `temny pokoj` | Tmavý pokoj (baterie, šroubovák) |
+| `temny pokoj` | Temný pokoj (baterie, šroubovák) |
 | `schody` | Schodiště |
 | `vychod` | Východ |
 
 ## Konce
 
-- **Špatný konec 1:** Zmrzl v lese — odešel bez svítilny
-- **Špatný konec 2:** Nalezen únoscem — odešel se svítilnou, ale nezabil únosce
-- **Dobrý konec:** Zabil únosce + má nabitou svítilnu → přežívá v lese
+- **Špatný konec 1:** Zmrzl v lese (odešel bez svítilny)
+- **Špatný konec 2:** Nalezen únoscem (odešel se svítilnou, ale nezabil únosce)
+- **Dobrý konec:** Přežívá ve slkepě (zabil únosce a má nabitou svítilnu)
 
 ## Spuštění
 
