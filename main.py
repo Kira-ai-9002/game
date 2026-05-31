@@ -83,7 +83,9 @@ while RUNNING:
                         print("\nMáš baterku")
                     else:
                         print("\nNemůžeš to udělat")
-                    if "baterka1" in INVENTAR and INVENTAR["baterka1"] and INVENTAR["baterka2"] and INVENTAR["svitilna"]:
+                    if ("svitilna" in INVENTAR and INVENTAR["svitilna"] and
+                        "baterka1" in INVENTAR and INVENTAR["baterka1"] and
+                        "baterka2" in INVENTAR and INVENTAR["baterka2"]):
                         INVENTAR["nabita svitilna"] = True
                         del INVENTAR["baterka1"]
                         del INVENTAR["baterka2"]
@@ -313,9 +315,9 @@ while RUNNING:
                         print("\nMáš svítilnu")
                     else:
                         print("\nNemůžeš to udělat")
-                    if "svitilna" in INVENTAR and INVENTAR["svitilna"] and \
-                        "baterka1" in INVENTAR and INVENTAR["baterka1"] and \
-                        "baterka2" in INVENTAR and INVENTAR["baterka2"]:
+                    if ("svitilna" in INVENTAR and INVENTAR["svitilna"] and
+                        "baterka1" in INVENTAR and INVENTAR["baterka1"] and
+                        "baterka2" in INVENTAR and INVENTAR["baterka2"]):
                         INVENTAR["nabita svitilna"] = True
                         del INVENTAR["svitilna"]
                         del INVENTAR["baterka1"]
@@ -465,9 +467,9 @@ while RUNNING:
                         print("\nMáš baterku")
                     else:
                         print("\nNemůžeš to udělat")
-                    if "baterka1" in INVENTAR and INVENTAR["baterka1"] and \
-                        "baterka2" in INVENTAR and INVENTAR["baterka2"] and \
-                        "svitilna" in INVENTAR and INVENTAR["svitilna"]:
+                    if ("svitilna" in INVENTAR and INVENTAR["svitilna"] and
+                        "baterka1" in INVENTAR and INVENTAR["baterka1"] and
+                        "baterka2" in INVENTAR and INVENTAR["baterka2"]):
                         INVENTAR["nabita svitilna"] = True
                         del INVENTAR["baterka1"]
                         del INVENTAR["baterka2"]
