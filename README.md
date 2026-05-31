@@ -1,6 +1,4 @@
-# Game-1
-
-Textová RPG hra v Pythonu (únikovka) .
+# Textová RPG hra v Pythonu (únikovka).
 
 ## Příběh
 
