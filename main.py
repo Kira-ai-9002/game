@@ -548,6 +548,7 @@ while RUNNING:
             while True:
                 if not INVENTAR["klic"]:
                     print("\nDveře jsou zamčené. Potřebuješ klíč.")
+                    break
                 elif not ZABIL and not INVENTAR["nabita svitilna"]:
                     print("\nOtevřeš dveře a doplazíš se ven.")
                     print("Před tebou je temný les. Nic není vidět.")
