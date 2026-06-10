@@ -125,6 +125,7 @@ while RUNNING:
             print("Když jsi otevřel horní skříňku, dvířka se zrcadlem se utrhla a rozbila.")
             print("Únosce tě uslyšel a přišel za tebou.")
             print("\nKonec")
+            input("> ")
             break
         elif x == "5":
             if not INVENTAR["mop"]:
@@ -164,6 +165,7 @@ while RUNNING:
                         print("Chceš nenápadně odejít, ale on tě zaslechl.")
                         print("\nKonec")
                         RUNNING = False
+                        input("> ")
                         break
                     else:
                         print("\nPootevřel jsi dveře a uviděl únosce.")
@@ -281,6 +283,7 @@ while RUNNING:
                     print("Spadnul jsi do propasti a zlomil si vaz.")
                     print("\nKonec")
                     RUNNING = False
+                    input("> ")
                     break
                 elif y == "2":
                     break
@@ -559,6 +562,7 @@ while RUNNING:
                     print("Ztratil ses a nemůžeš najít cestu ven.")
                     print("\nŠpatný konec (Zmrzl jsi v lese. Není to zas tak špatná smrt.)")
                     RUNNING = False
+                    input("> ")
                     break
                 elif INVENTAR["nabita svitilna"] and not ZABIL:
                     print("\nUtekl jsi.")
@@ -567,6 +571,7 @@ while RUNNING:
                     print("Po nějaké době tě, kvůli světlu svítilny mezi stromy, najde únosce a odnese tě zpět.")
                     print("\nŠpatný konec (našli tě)")
                     RUNNING = False
+                    input("> ")
                     break
                 else:
                     print("\nUtekl jsi.")
@@ -578,6 +583,7 @@ while RUNNING:
                     print("Žiješ jen s nadějí, že tě někdo najde a zachrání.")
                     print("\nDobrý konec (asi).")
                     RUNNING = False
+                    input("> ")
                     break
         elif x == "3":
             ukaz_inventar()
